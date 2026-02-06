@@ -20,7 +20,11 @@ import java.util.Scanner;
  * Allows better type safety and reduces chances of errors with explicit casting.
  *
  * 2. Use interfaces where possible
- * allows you to modify which implementation is being used without large refactors.
+ * - allows you to modify which implementation is being used without large refactors.
+ *
+ * 3. Palindrome bug
+ * - bug with palindrome method resulted in first letter being missed
+ * - fixed typo
  * 
  */
 
@@ -28,7 +32,7 @@ public class CodeExample {
   public static void main(String[] args) {
     hashMapOutput();
     
-    pallindrome();
+    palindrome();
   }
 
   public static void hashMapOutput() {
@@ -57,7 +61,7 @@ public class CodeExample {
     });
   }
 
-  public static void pallindrome() {
+  public static void palindrome() {
     String original = "", reverse = "";
     Scanner in = new Scanner(System.in);
     int length;
@@ -66,7 +70,7 @@ public class CodeExample {
     original = in.nextLine();
     length = original.length();
     
-    for (int i = length - 1; i > 0; i--) {
+    for (int i = length - 1; i >= 0; i--) {
       reverse = reverse + original.charAt(i);
     }
     
