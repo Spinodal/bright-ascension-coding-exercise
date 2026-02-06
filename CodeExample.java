@@ -29,6 +29,12 @@ import java.util.Scanner;
  * 4. StringBuilder efficiency
  * - Use StringBuilder to avoid string concatenation overhead
  * - use printf and remove unnecessary variable
+ *
+ * 5. Incorrect use of exception
+ * - replaced Null pointer exception with normal output as this is:
+ *   a. not exceptional circumstances, this is a perfectly reasonable outcome for the method.
+ *   b. outcome has nothing to do with a "Null pointer".
+ * - added missing detail from messages to user
  */
 
 public class CodeExample {
@@ -74,7 +80,7 @@ public class CodeExample {
     original = in.nextLine();
     length = original.length();
     reverse = new StringBuilder(length);
-    
+
     for (int i = length - 1; i >= 0; i--) {
       reverse.append(original.charAt(i));
     }
@@ -82,8 +88,8 @@ public class CodeExample {
     System.out.printf("reverse is: %s\n", reverse);
 
     if (original.contentEquals(reverse))
-      System.out.println("The number is palindrome");
+      System.out.println("The number or String is a palindrome");
     else
-      throw new NullPointerException("The number is not a palindrome");
+      System.out.println("The number or String is not a palindrome");
   }
 }
