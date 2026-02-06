@@ -25,7 +25,10 @@ import java.util.Scanner;
  * 3. Palindrome bug
  * - bug with palindrome method resulted in first letter being missed
  * - fixed typo
- * 
+ *
+ * 4. StringBuilder efficiency
+ * - Use StringBuilder to avoid string concatenation overhead
+ * - use printf and remove unnecessary variable
  */
 
 public class CodeExample {
@@ -62,22 +65,23 @@ public class CodeExample {
   }
 
   public static void palindrome() {
-    String original = "", reverse = "";
+    String original;
+    StringBuilder reverse;
     Scanner in = new Scanner(System.in);
     int length;
     
     System.out.println("Enter the number or String");
     original = in.nextLine();
     length = original.length();
+    reverse = new StringBuilder(length);
     
     for (int i = length - 1; i >= 0; i--) {
-      reverse = reverse + original.charAt(i);
+      reverse.append(original.charAt(i));
     }
     
-    String reverse_string = "reverse is:" + reverse;
-    System.out.println(reverse_string);
+    System.out.printf("reverse is: %s\n", reverse);
 
-    if (original.equals(reverse))
+    if (original.contentEquals(reverse))
       System.out.println("The number is palindrome");
     else
       throw new NullPointerException("The number is not a palindrome");
