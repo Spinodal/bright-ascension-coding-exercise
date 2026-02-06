@@ -35,6 +35,11 @@ import java.util.Scanner;
  *   a. not exceptional circumstances, this is a perfectly reasonable outcome for the method.
  *   b. outcome has nothing to do with a "Null pointer".
  * - added missing detail from messages to user
+ *
+ * 6. Stringbuilder for reverse
+ * - using existing methods from core java classes and/or libraries can cut down on bugs occurring in the first place
+ * - core classes/libraries and popular third party libraries will generally be extensively tested by their owners
+ * - Can often improve readability
  */
 
 public class CodeExample {
@@ -74,16 +79,11 @@ public class CodeExample {
     String original;
     StringBuilder reverse;
     Scanner in = new Scanner(System.in);
-    int length;
-    
+
     System.out.println("Enter the number or String");
     original = in.nextLine();
-    length = original.length();
-    reverse = new StringBuilder(length);
 
-    for (int i = length - 1; i >= 0; i--) {
-      reverse.append(original.charAt(i));
-    }
+    reverse = new StringBuilder(original).reverse();
     
     System.out.printf("reverse is: %s\n", reverse);
 
