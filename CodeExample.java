@@ -36,10 +36,15 @@ import java.util.Scanner;
  *   b. outcome has nothing to do with a "Null pointer".
  * - added missing detail from messages to user
  *
- * 6. Stringbuilder for reverse
+ * 6. StringBuilder for reverse
  * - using existing methods from core java classes and/or libraries can cut down on bugs occurring in the first place
  * - core classes/libraries and popular third party libraries will generally be extensively tested by their owners
  * - Can often improve readability
+ *
+ * 7. Readability and misc improvements
+ * - Remove unnecessary call to stream
+ * - improved variable names
+ * - more use of printf to cut down on string concatenation
  */
 
 public class CodeExample {
@@ -55,23 +60,25 @@ public class CodeExample {
     map.put(25, "Twenty Five");
     map.put(12, "Twelve");
     
-    System.out.println(map.size());
+    System.out.printf("Map size: %d\n", map.size());
 
     System.out.println("While Loop:");
+    // You could use `var` here to improve readability of the iterator, but personally I find that makes it harder to understand what
+    // objects are being used, especially during code review outside of an IDE. I'd generally just use them in tests
     Iterator<Map.Entry<Integer, String>> itr = map.entrySet().iterator();
     while (itr.hasNext()) {
-      Map.Entry<Integer, String> me = itr.next();
-      System.out.println("Key is " + me.getKey() + " Value is " + me.getValue());
+      Map.Entry<Integer, String> entry = itr.next();
+      System.out.printf("Key is %d Value is %s\n", entry.getKey(), entry.getValue());
     }
 
     System.out.println("Advanced For Loop:");
-    for (Map.Entry<Integer, String> me2 : map.entrySet()) {
-      System.out.println("Key is: " + me2.getKey() + " Value is: " + me2.getValue());
+    for (Map.Entry<Integer, String> entry : map.entrySet()) {
+      System.out.printf("Key is %d value is %s\n", entry.getKey(), entry.getValue());
     }
 
     System.out.println("Stream:");
-    map.entrySet().stream().forEach(me3 -> {
-      System.out.println("Key is: " + me3.getKey() + " Value is: " + me3.getValue());
+    map.entrySet().forEach(entry -> {
+      System.out.printf("Key is %d value is %s\n", entry.getKey(), entry.getValue());
     });
   }
 
