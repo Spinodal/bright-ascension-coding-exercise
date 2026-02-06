@@ -13,7 +13,14 @@ import java.util.Scanner;
  *
  * (Complete below section)
  * Proposed updates & reasoning:
+ * 1. Generics
+ * - Ensure generics are used throughout
+ * - Simplify initialisation
+ * - Remove unnecessary casting
+ * Allows better type safety and reduces chances of errors with explicit casting.
  *
+ * 2. Use interfaces where possible
+ * allows you to modify which implementation is being used without large refactors.
  * 
  */
 
@@ -25,8 +32,7 @@ public class CodeExample {
   }
 
   public static void hashMapOutput() {
-    HashMap <Integer,String> map;
-    map = new HashMap<Integer,String>();
+    Map <Integer,String> map = new HashMap<>();
     map.put(2, "Two");
     map.put(25, "Twenty Five");
     map.put(12, "Twelve");
@@ -34,14 +40,14 @@ public class CodeExample {
     System.out.println(map.size());
 
     System.out.println("While Loop:");
-    Iterator itr = map.entrySet().iterator();
+    Iterator<Map.Entry<Integer, String>> itr = map.entrySet().iterator();
     while (itr.hasNext()) {
-      Map.Entry me = (Map.Entry) itr.next();
+      Map.Entry<Integer, String> me = itr.next();
       System.out.println("Key is " + me.getKey() + " Value is " + me.getValue());
     }
 
     System.out.println("Advanced For Loop:");
-    for (Map.Entry me2 : map.entrySet()) {
+    for (Map.Entry<Integer, String> me2 : map.entrySet()) {
       System.out.println("Key is: " + me2.getKey() + " Value is: " + me2.getValue());
     }
 
