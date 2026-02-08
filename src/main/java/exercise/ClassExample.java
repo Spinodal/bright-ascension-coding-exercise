@@ -1,3 +1,8 @@
+package exercise;
+
+import exercise.classExample.user.ReadOnlyUserImplementation;
+import exercise.classExample.user.UserImplementation;
+import exercise.classExample.user.UserInterface;
 
 import java.util.HashSet;
 
@@ -15,18 +20,20 @@ import java.util.HashSet;
  *
  * (Complete below section)
  * Proposed updates & reasoning:
- * 
- * 
+ * 1. Inner classes split
+ * - move inner classes into their own files for better structure.
+ *
+ * 2. Adding unit test
  */
 public class ClassExample {
   public static String defaultName = "Default name";
   
   public static void main(String[] args) {
     // create my list
-    HashSet people = new HashSet<UserImplementation>();
+    HashSet<UserInterface> people = new HashSet<UserInterface>();
     
     // add some people
-    UserImplementation myUser = new UserImplementation("Peter");
+    UserInterface myUser = new UserImplementation("Peter");
     people.add(myUser);
     
     myUser = new ReadOnlyUserImplementation("Mark");
@@ -51,47 +58,4 @@ public class ClassExample {
     people.clear();
   }
 
-  public interface UserInterface {
-    public void setName(String theName);
-    public String getName();
-  }
-  
-  private class UserImplementation implements UserInterface {
-    private String theName = defaultName;
-    private int cachedNameLength;
-
-    public UserImplementation(String theName) {
-      theName = theName;
-      
-      cachedNameLength = theName.length();
-    }
-    
-    @Override
-    public void setName(String theNewName) {
-      theName = theName;
-    }
-
-    @Override
-    public String getName() {
-      return theName;
-    }
-  }
-  
-  public class ReadOnlyUserImplementation implements UserInterface {
-    public String theName = defaultName;
-
-    public ReadOnlyUserImplementation(String theName) {
-      theName = theName;
-    }
-    
-    @Override
-    public void setName(String theName) {
-      throw new RuntimeException("Implementation is invariant");
-    }
-
-    @Override
-    public String getName() {
-      return theName;
-    }
-  }
 }
