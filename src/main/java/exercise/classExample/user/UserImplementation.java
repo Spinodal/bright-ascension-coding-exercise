@@ -4,12 +4,9 @@ import exercise.ClassExample;
 
 public class UserImplementation implements UserInterface {
     private String theName = ClassExample.defaultName;
-    private int cachedNameLength;
 
     public UserImplementation(String theName) {
         theName = theName;
-
-        cachedNameLength = theName.length();
     }
 
     @Override

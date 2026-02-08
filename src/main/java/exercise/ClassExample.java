@@ -24,6 +24,13 @@ import java.util.HashSet;
  * - move inner classes into their own files for better structure.
  *
  * 2. Adding unit test
+ *
+ * 3. Removing unused cached name length
+ * - it's good practice to keep code clean from half complete enhancements, especially as there's a chance they will never be needed.
+ *
+ * 4. Remove unnecessary cleanup
+ * - Removing the "reset everything" step as the objects will all drop out of scope as soon as the call to `people.clear()` is called.
+ * - Also avoids issues with attempting to change name of immutable user implementations.
  */
 public class ClassExample {
   public static String defaultName = "Default name";
@@ -50,9 +57,6 @@ public class ClassExample {
       
       System.out.println(peopleString);
     }
-    
-    // reset everything
-    people.stream().forEach(person -> person.setName(defaultName));
     
     // now clean up
     people.clear();
