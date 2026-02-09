@@ -1,21 +1,11 @@
 package exercise.classExample.user;
 
+import lombok.AllArgsConstructor;
+import lombok.Value;
+
+@Value
+@AllArgsConstructor
 public class ReadOnlyUserImplementation implements UserInterface {
-    private final String name;
-    private final int id;
-
-    public ReadOnlyUserImplementation(String name, int id) {
-        this.name = name;
-        this.id = id;
-    }
-
-    @Override
-    public String getName() {
-        return name;
-    }
-
-    @Override
-    public int getId() {
-        return id;
-    }
+    String name;
+    int id;
 }

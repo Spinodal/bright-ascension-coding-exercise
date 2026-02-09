@@ -32,6 +32,7 @@ class ClassExampleTest {
 Person: Peter, ID: 1
 Person: Mark, ID: 2
 Person: Sam, ID: 3
+Person: Mike, ID: 4
 """;
         ClassExample.main(new String[0]);
         outputStream.flush();

@@ -49,6 +49,12 @@ import java.util.List;
  * - adding ID to allow for unique identification of users. Setting IDs will ideally be done by a database
  * - printf to reduce string concatenation
  *
+ * 7. Lombok
+ * Migrate pojos to using lombok to reduce boilerplate and include other useful features like automatic hashcode +
+ * equals methods. Also allows easy additions like builders for alternative ways of constructing objects. In my opinion
+ * this would be a better approach than allowing a user to be created and setting the name separately in the use cases
+ * below.
+ *
  */
 public class ClassExample {
 
@@ -67,7 +73,13 @@ public class ClassExample {
     myEditableUser.setName("Sam");
     myEditableUser.setId(counter.nextId());
     people.add(myEditableUser);
-    
+
+    myUser = UserImplementation.builder()
+            .name("Mike")
+            .id(counter.nextId())
+            .build();
+    people.add(myUser);
+
     // print them out!!
     for (UserInterface person : people) {
       System.out.printf("Person: %s, ID: %d%n", person.getName(), person.getId());
