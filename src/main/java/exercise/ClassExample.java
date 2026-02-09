@@ -4,7 +4,8 @@ import exercise.classExample.user.ReadOnlyUserImplementation;
 import exercise.classExample.user.UserImplementation;
 import exercise.classExample.user.UserInterface;
 
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Task:
@@ -26,18 +27,29 @@ import java.util.HashSet;
  * 2. Adding unit test
  *
  * 3. Removing unused cached name length
- * - it's good practice to keep code clean from half complete enhancements, especially as there's a chance they will never be needed.
+ * - it's good practice to keep code clean from half complete enhancements, especially as there's a chance they will
+ *   never be needed.
  *
  * 4. Remove unnecessary cleanup
- * - Removing the "reset everything" step as the objects will all drop out of scope as soon as the call to `people.clear()` is called.
+ * - Removing the "reset everything" step as the objects will all drop out of scope as soon as the call to
+ *   `people.clear()` is called.
  * - Also avoids issues with attempting to change name of immutable user implementations.
+ *
+ * 5. Fixing bugs and issues
+ * - Fixing bug with name initialisation - setting local variable instance of instance variable
+ * - Swapping set to a list - allows for different people with the same name be created
+ * - Removing default name - having a default doesn't make sense for this use case. It also breaks the immutability of
+ *   the readonly implementation
+ * - Remove setName from interface - avoids the need to return an exception for the readonly implementation when trying
+ *   to call setName. Also reduces the potential for users with a null name from being created.
+ * - Add default constructor to UserImplementation to avoid creating a use with an explicit `null` name
+ *
  */
 public class ClassExample {
-  public static String defaultName = "Default name";
-  
+
   public static void main(String[] args) {
     // create my list
-    HashSet<UserInterface> people = new HashSet<UserInterface>();
+    List<UserInterface> people = new ArrayList<>();
     
     // add some people
     UserInterface myUser = new UserImplementation("Peter");
@@ -46,9 +58,9 @@ public class ClassExample {
     myUser = new ReadOnlyUserImplementation("Mark");
     people.add(myUser);
     
-    myUser = new UserImplementation(null);
-    myUser.setName("Sam");
-    people.add(myUser);
+    UserImplementation myEditableUser = new UserImplementation();
+    myEditableUser.setName("Sam");
+    people.add(myEditableUser);
     
     // print them out!!
     for (UserInterface person : people) {

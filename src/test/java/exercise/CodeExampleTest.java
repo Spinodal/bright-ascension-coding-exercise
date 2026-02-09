@@ -10,6 +10,7 @@ import java.io.IOException;
 import java.io.PrintStream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static exercise.TestUtils.*;
 
 class CodeExampleTest {
 
@@ -83,7 +84,4 @@ The number or String is a palindrome
         assertEquals(expectedOutput, sanitiseOutput(output));
     }
 
-    String sanitiseOutput(String output){
-        return output.replaceAll("\r\n", "\n");
-    }
 }

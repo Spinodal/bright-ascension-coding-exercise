@@ -8,6 +8,7 @@ import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 
+import static exercise.TestUtils.sanitiseOutput;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 class ClassExampleTest {
@@ -35,6 +36,7 @@ Person: Sam
         ClassExample.main(new String[0]);
         outputStream.flush();
         String actual = outputStream.toString();
-        assertEquals(expectedOutput, actual);
+        assertEquals(expectedOutput, sanitiseOutput(actual));
     }
+
 }

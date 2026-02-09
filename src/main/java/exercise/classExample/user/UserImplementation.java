@@ -1,21 +1,21 @@
 package exercise.classExample.user;
 
-import exercise.ClassExample;
-
 public class UserImplementation implements UserInterface {
-    private String theName = ClassExample.defaultName;
+    private String name = "";
 
-    public UserImplementation(String theName) {
-        theName = theName;
+    public UserImplementation(String name) {
+        this.name = name;
     }
 
-    @Override
-    public void setName(String theNewName) {
-        theName = theName;
+    public UserImplementation() {
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        return theName;
+        return name;
     }
 }

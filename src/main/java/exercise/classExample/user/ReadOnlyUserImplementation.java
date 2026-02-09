@@ -1,21 +1,14 @@
 package exercise.classExample.user;
 
-import exercise.ClassExample;
-
 public class ReadOnlyUserImplementation implements UserInterface {
-    public String theName = ClassExample.defaultName;
+    public final String name;
 
-    public ReadOnlyUserImplementation(String theName) {
-        theName = theName;
-    }
-
-    @Override
-    public void setName(String theName) {
-        throw new RuntimeException("Implementation is invariant");
+    public ReadOnlyUserImplementation(String name) {
+        this.name = name;
     }
 
     @Override
     public String getName() {
-        return theName;
+        return name;
     }
 }
