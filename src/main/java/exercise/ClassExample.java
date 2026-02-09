@@ -1,5 +1,6 @@
 package exercise;
 
+import exercise.classExample.user.Counter;
 import exercise.classExample.user.ReadOnlyUserImplementation;
 import exercise.classExample.user.UserImplementation;
 import exercise.classExample.user.UserInterface;
@@ -37,12 +38,16 @@ import java.util.List;
  *
  * 5. Fixing bugs and issues
  * - Fixing bug with name initialisation - setting local variable instance of instance variable
- * - Swapping set to a list - allows for different people with the same name be created
+ * - Swapping set to a list - allows for different people with the same name be created, and allows for
  * - Removing default name - having a default doesn't make sense for this use case. It also breaks the immutability of
  *   the readonly implementation
  * - Remove setName from interface - avoids the need to return an exception for the readonly implementation when trying
  *   to call setName. Also reduces the potential for users with a null name from being created.
  * - Add default constructor to UserImplementation to avoid creating a use with an explicit `null` name
+ *
+ * 6. Other improvements
+ * - adding ID to allow for unique identification of users. Setting IDs will ideally be done by a database
+ * - printf to reduce string concatenation
  *
  */
 public class ClassExample {
@@ -50,24 +55,22 @@ public class ClassExample {
   public static void main(String[] args) {
     // create my list
     List<UserInterface> people = new ArrayList<>();
-    
+    Counter counter = new Counter();
     // add some people
-    UserInterface myUser = new UserImplementation("Peter");
+    UserInterface myUser = new UserImplementation("Peter", counter.nextId());
     people.add(myUser);
     
-    myUser = new ReadOnlyUserImplementation("Mark");
+    myUser = new ReadOnlyUserImplementation("Mark", counter.nextId());
     people.add(myUser);
     
     UserImplementation myEditableUser = new UserImplementation();
     myEditableUser.setName("Sam");
+    myEditableUser.setId(counter.nextId());
     people.add(myEditableUser);
     
     // print them out!!
     for (UserInterface person : people) {
-      String peopleString = "Person: ";
-      peopleString += person.getName();
-      
-      System.out.println(peopleString);
+      System.out.printf("Person: %s, ID: %d%n", person.getName(), person.getId());
     }
     
     // now clean up

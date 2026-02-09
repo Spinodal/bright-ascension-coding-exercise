@@ -29,9 +29,9 @@ class ClassExampleTest {
     @Test
     void testUser() throws IOException {
         String expectedOutput = """
-Person: Peter
-Person: Mark
-Person: Sam
+Person: Peter, ID: 1
+Person: Mark, ID: 2
+Person: Sam, ID: 3
 """;
         ClassExample.main(new String[0]);
         outputStream.flush();

@@ -62,7 +62,7 @@ public class CodeExample {
     map.put(25, "Twenty Five");
     map.put(12, "Twelve");
     
-    System.out.printf("Map size: %d\n", map.size());
+    System.out.printf("Map size: %d%n", map.size());
 
     System.out.println("While Loop:");
     // You could use `var` here to improve readability of the iterator, but personally I find that makes it harder to understand what
@@ -70,17 +70,17 @@ public class CodeExample {
     Iterator<Map.Entry<Integer, String>> itr = map.entrySet().iterator();
     while (itr.hasNext()) {
       Map.Entry<Integer, String> entry = itr.next();
-      System.out.printf("Key is %d Value is %s\n", entry.getKey(), entry.getValue());
+      System.out.printf("Key is %d Value is %s%n", entry.getKey(), entry.getValue());
     }
 
     System.out.println("Advanced For Loop:");
     for (Map.Entry<Integer, String> entry : map.entrySet()) {
-      System.out.printf("Key is %d value is %s\n", entry.getKey(), entry.getValue());
+      System.out.printf("Key is %d value is %s%n", entry.getKey(), entry.getValue());
     }
 
     System.out.println("Stream:");
     map.entrySet().forEach(entry -> {
-      System.out.printf("Key is %d value is %s\n", entry.getKey(), entry.getValue());
+      System.out.printf("Key is %d value is %s%n", entry.getKey(), entry.getValue());
     });
   }
 
@@ -94,7 +94,7 @@ public class CodeExample {
 
     reverse = new StringBuilder(original).reverse();
     
-    System.out.printf("reverse is: %s\n", reverse);
+    System.out.printf("reverse is: %s%n", reverse);
 
     if (original.contentEquals(reverse))
       System.out.println("The number or String is a palindrome");
